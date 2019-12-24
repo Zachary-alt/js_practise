@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        class PromiseM{
+            constructor(task){
+                this.status = "pending";
+                // resolve时返回的数据
+                this.resolveData = null;
+                // reject时返回的数据
+                this.rejectData = null;
+                // reject时执行该队列
+                this.onFulfilledList = [];
+                this.onRejectedList = [];
+                task(this.onResolve,this.onReject)
+            }
+            onResolve = data=>{
+                if(this.status === "pending"){
+                    this.status = "fulfilled";
+                    this.resolveData = data;
+                    this.onFulfilledList.forEach(fn=>{
+                        fn(this.resolveData)
+                    })
+                }
+            }
+            onReject = err=>{
+                if(this.status === "pending"){
+                    this.status = "rejected";
+                    this.rejectData = err;
+                    this.onRejectedList.forEach(fn=>{
+                        fn(this.rejectData)
+                    })
+                }
+            }
+            resolvePromise = (data, resolve, reject) =>{
+                if(data instanceof Promise){ // then return 的数据是一个promise
+
+                }else if(data !== null && data instanceof Object){// then return的是一个对象,若对象具有then方法，则可使用此方法作为新的then
+
+                }else{// then return 的是基本数据或undefined
+                    resolve(data)
+                }
+            }
+            then = (onFulfilled, onRejected)=>{ // then回调，返回一个promise
+                console.log(999);
+                let promise;
+                if(this.status === "pending"){
+                    promise = new PromiseM((resolve, reject)=>{
+                        this.onFulfilledList.push(()=>{
+                            // 传入then的参数不是函数则忽略
+                            if(!(onFulfilled instanceof Function)){
+                                resolve(this.resolveData)
+                            }else{
+                                let data = onFulfilled(this.resolveData);
+                                this.resolvePromise(data, resolve, reject);
+                            }
+                        })
+                    })
+                }
+                
+            }
+        }
+        new PromiseM(function(resolve, reject){
+            resolve(2333)
+        }).then()
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

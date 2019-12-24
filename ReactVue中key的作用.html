@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      不带有key，并且使用简单的模板，基于这个前提下，可以更有效的复用节点，
+      diff速度来看也是不带key更加快速的，因为带key在增删节点上有耗时。
+      这就是vue文档所说的默认模式。但是这个并不是key作用，而是没有key的情况下可以对节点就地复用，
+      提高性能。
+      这种模式会带来一些隐藏的副作用，比如可能不会产生过渡效果，或者在某些节点有绑定数据（表单）状态，
+      会出现状态错位。VUE文档也说明了 这个默认的模式是高效的，
+      但是只适用于不依赖子组件状态或临时 DOM 状态 (例如：表单输入值)
+      的列表渲染输出
+      <h4>但是key的作用是什么？</h4>
+
+      key是给每一个vnode的唯一id,可以依靠key,更准确,
+      更快的拿到oldVnode中对应的vnode节点。 1. 更准确
+      因为带key就不是就地复用了，在sameNode函数 a.key
+      ===b.key对比中可以避免就地复用的情况。 所以会更加准确。 2. 更快
+      利用key的唯一性生成map对象来获取对应节点，比遍历方式更快。(这个观点，就是我最初的那个观点。从这个角度看，map会比遍历更快。)
+      原答案 -----------------------
+      vue和react都是采用diff算法来对比新旧虚拟节点，从而更新节点。
+      在vue的diff函数中（建议先了解一下diff算法过程）。
+      在交叉对比中，当新节点跟旧节点头尾交叉对比没有结果时，会根据新节点的key去对比旧节点数组中的key，
+      从而找到相应旧节点（这里对应的是一个key => index 的map映射）。
+      如果没找到就认为是一个新增节点。而如果没有key，那么就会采用遍历查找的方式去找到对应的旧节点。
+      一种一个map映射，另一种是遍历查找。相比而言。map映射的速度更快。
+      <a
+        href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/1"
+        >more</a
+      >
+    </div>
+  </body>
+</html>
