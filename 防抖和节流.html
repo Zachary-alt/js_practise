@@ -17,8 +17,9 @@
             }, 500);
           };
         }
-        function sayHi() {
-          console.log("防抖成功");
+        function sayHi(e,v='防抖成功') {
+          console.log(e);
+          console.log(v);
         }
         var inp = document.getElementById("inp");
         inp.addEventListener("input", debounce(sayHi)); // 防抖

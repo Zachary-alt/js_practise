@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script src="js/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				
+			})
+		</script>
+		<style type="text/css">
+			/* .con{
+				position: relative;
+			}
+			.lf{
+				width: 200px;
+				height: 400px;
+				background: red;
+			}
+			.rg{
+				position: absolute;
+				top: 0;
+				left: 200px;
+				width: 100%;
+				height: 500px;
+				background: blue;
+			} */
+			
+			/*.con{
+				width: 100%;
+				display: table;
+			}
+			.lf{
+				width: 300px;
+				height: 500px;
+				display: table-cell;
+				background: red;
+			}
+			.rg{
+				height: 600px;
+				display: table-cell;
+				background: blue;
+			}*/
+			
+			/* .con{
+				overflow: hidden;
+				zoom: 1;
+			}
+			.lf{
+				float: left;
+				width: 200px;
+				height: 500px;
+				background: red;
+			}
+			.rg{
+				margin-left: 200px;
+				height: 600px;
+				background: blue;
+			} */
+			.con{
+				overflow: hidden;
+				zoom: 1;
+			}
+			.lf{
+				float: left;
+				width: 200px;
+				height: 500px;
+				background: red;
+			}
+			.rg{
+				float: left;
+				width: calc(100% - 200px);
+				height: 600px;
+				background: blue;
+			}
+		</style>
+		<title></title>
+	</head>
+	<body>
+		<div class="con">
+			<div class="lf"></div>
+			<div class="rg"></div>
+		</div>
+		<div class="foot">aaaaa</div>
+	</body>
+</html>
