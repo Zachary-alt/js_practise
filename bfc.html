@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bfc</title>
+    <style>
+        .out{
+            border: 10px solid red;
+            overflow: hidden;
+        }
+        .in{
+            background: grey;
+            width: 100%;
+            height: 100px;
+            float: left;
+        }
+
+
+        div{
+            border: 3px solid red;
+            height: 100px;
+        }
+        .left{
+            min-width: 200px;
+            margin-right: 20px;
+            float: left;
+        }
+        .right{
+            border-color: blue;
+            display: flow-root;
+        }
+    </style>
+</head>
+<body>
+    <!-- 使 BFC 内部的浮动元素不会到处乱跑 -->
+    <div class="out">
+        <div class="in"></div>
+    </div>
+
+    <!-- 和浮动元素产生边界 -->
+    <div class="left"></div>
+    <div class="right"></div>
+</body>
+</html>
