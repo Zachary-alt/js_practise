@@ -33,8 +33,8 @@ let a = '1'
 // 当 + 号为字符串连接符时，则调用对象的toString方法转化为字符串然后相加
 console.log(a + null)         // '1null'
 // 当 + 号为算术运算符时，则调用Number()方法转化然后相加
-console.log(a + null)         // 1
-console.log(a + undefined)    // NaN (Number(undefined) = NaN)
+console.log( + null)         // 1
+console.log( + undefined)    // NaN (Number(undefined) = NaN)
 // 在这里我们需要注意的是null、布尔值和undefined这三类对象使用 + 进行操作，当有一边确定为数字的时候，这三类值会尝试用Number()进行转化
 
 // 关系运算符会把其他数据类型转换成number之后再比较关系
