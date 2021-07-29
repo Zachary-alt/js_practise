@@ -46,12 +46,6 @@
         }
         Function.prototype.call2 = function(context = window) {
           context.fn = this;
-          // let args = [];
-          // for(let i=1;i<arguments.length;i++){
-          //     args.push("arguments[" + i + "]"); //不这么做的话 字符串的引号会被自动去掉 变成了变量 导致报错
-          // }
-          // args = args.join(",");
-          // var result = eval("context.fn(" + args + ")"); //相当于执行了context.fn(arguments[1], arguments[2]);
           var args = [...arguments].slice(1); // 将 context 后面的参数取出来
           var result = context.fn(...args);
           delete context.fn;
