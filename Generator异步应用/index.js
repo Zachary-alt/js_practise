@@ -2,7 +2,8 @@ const fs=require('fs')
 function read(url){
     setTimeout(()=>{
         fs.readFile(url,(err,data)=>{
-            it.next(data.toString())
+            let value = it.next(url+': '+data.toString())
+            console.log(url,value);
         })
     },1000)
 }
